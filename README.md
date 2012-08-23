@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/scottgonzalez/grunt-git-authors.png)](http://travis-ci.org/scottgonzalez/grunt-git-authors)
 # grunt-git-authors
 
 A [grunt](https://github.com/cowboy/grunt) plugin for generating a list of authors from the git history.
