@@ -1,6 +1,6 @@
 # grunt-git-authors
 
-A [grunt](https://github.com/cowboy/grunt) plugin for generating a list of authors from the git history.
+A [grunt](https://github.com/gruntjs/grunt) plugin for generating a list of authors from the git history.
 
 ## API
 
