@@ -7,7 +7,7 @@ grunt.registerTask( "authors", "Generate a list of authors in order of first con
 
 	grunt.util.spawn({
 		cmd: "git",
-		args: [ "log", "--pretty=%an <%ae>" ]
+		args: [ "log", "--pretty=%aN <%aE>" ]
 	}, function( err, result ) {
 		if ( err ) {
 			grunt.log.error( err );
