@@ -2,6 +2,10 @@
 
 A [grunt](https://github.com/gruntjs/grunt) plugin for generating a list of authors from the git history.
 
+## Grunt compatibility
+
+v1.1.0+ is compatible with Grunt 0.4. If you're using Grunt 0.3, use v1.0.0.
+
 ## API
 
 ### Tasks
