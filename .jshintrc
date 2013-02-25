@@ -4,6 +4,7 @@
 	"expr": true,
 	"noarg": true,
 	"node": true,
+	"strict": false,
 	"trailing": true,
 	"undef": true,
 	"unused": true

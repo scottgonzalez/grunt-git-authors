@@ -1,35 +1,37 @@
 {
-	"name": "grunt-git-authors",
-	"description": "Generate a list of authors from the git history.",
-	"version": "1.1.0-beta.1",
-	"homepage": "https://github.com/scottgonzalez/grunt-git-authors",
-	"author": {
-		"name": "Scott González",
-		"email": "scott.gonzalez@gmail.com",
-		"url": "http://scottgonzalez.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/scottgonzalez/grunt-git-authors.git"
-	},
-	"bugs": {
-		"url": "https://github.com/scottgonzalez/grunt-git-authors/issues"
-	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "https://github.com/scottgonzalez/grunt-git-authors/blob/master/LICENSE-MIT"
-		}
-	],
-	"main": "Gruntfile.js",
-	"engines": {
-		"node": "*"
-	},
-	"dependencies": {
-		"grunt": "~0.4.0rc3",
-		"grunt-contrib-jshint": "~0.1.0"
-	},
-	"keywords": [
-		"gruntplugin"
-	]
+  "name": "grunt-git-authors",
+  "description": "Generate a list of authors from the git history.",
+  "version": "1.1.0-beta.1",
+  "homepage": "https://github.com/scottgonzalez/grunt-git-authors",
+  "author": {
+    "name": "Scott González",
+    "email": "scott.gonzalez@gmail.com",
+    "url": "http://scottgonzalez.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/scottgonzalez/grunt-git-authors.git"
+  },
+  "bugs": {
+    "url": "https://github.com/scottgonzalez/grunt-git-authors/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/scottgonzalez/grunt-git-authors/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "grunt": "~0.4.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
 }
