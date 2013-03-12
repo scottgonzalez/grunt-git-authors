@@ -24,6 +24,14 @@ You can optionally run this task against a subdirectory:
 grunt authors:path/to/directory
 ```
 
+## Mailmap
+
+This task respects mailmap, so if you have messy author info in your commits,
+you can correct the data in your mailmap and this task with output the cleaned
+up information. For more information, about using a mailmap, see the docs for
+`git-shortlog` or read Shane da Silva's blog post about
+[Git Shortlog and Mailmap](http://shane.io/2011/10/07/git-shortlog-and-mailmap.html).
+
 ## License
 
 Copyright 2013 Scott González. Released under the terms of the MIT license.
