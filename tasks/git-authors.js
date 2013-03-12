@@ -2,12 +2,15 @@
 
 module.exports = function( grunt ) {
 
-grunt.registerTask( "authors", "Generate a list of authors in order of first contribution", function() {
+grunt.registerTask( "authors",
+	"Generate a list of authors in order of first contribution",
+function( dir ) {
 	var done = this.async();
+	dir = dir || ".";
 
 	grunt.util.spawn({
 		cmd: "git",
-		args: [ "log", "--pretty=%aN <%aE>" ]
+		args: [ "log", "--pretty=%aN <%aE>", dir ]
 	}, function( err, result ) {
 		if ( err ) {
 			grunt.log.error( err );
