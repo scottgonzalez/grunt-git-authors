@@ -3,6 +3,8 @@
 A [grunt](https://github.com/gruntjs/grunt) plugin for generating a list of
 authors from the git history.
 
+Support this project by [donating on Gittip](https://www.gittip.com/scottgonzalez/).
+
 ## Grunt compatibility
 
 v1.1.0+ is compatible with Grunt 0.4. If you're using Grunt 0.3, use v1.0.0.
@@ -35,3 +37,7 @@ up information. For more information, about using a mailmap, see the docs for
 ## License
 
 Copyright 2013 Scott González. Released under the terms of the MIT license.
+
+---
+
+Support this project by [donating on Gittip](https://www.gittip.com/scottgonzalez/).
