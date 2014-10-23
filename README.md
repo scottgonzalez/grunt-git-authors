@@ -3,7 +3,7 @@
 A [grunt](https://github.com/gruntjs/grunt) plugin for generating a list of
 authors from the git history.
 
-Support this project by [donating on Gittip](https://www.gittip.com/scottgonzalez/).
+Support this project by [donating on Gratipay](https://gratipay.com/scottgonzalez/).
 
 This project supports both a [Node API](#node-api) and a [Grunt API](#grunt-api).
 
@@ -70,4 +70,4 @@ Copyright 2014 Scott González. Released under the terms of the MIT license.
 
 ---
 
-Support this project by [donating on Gittip](https://www.gittip.com/scottgonzalez/).
+Support this project by [donating on Gratipay](https://gratipay.com/scottgonzalez/).
