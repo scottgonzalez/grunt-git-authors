@@ -4,7 +4,7 @@ grunt.loadNpmTasks( "grunt-contrib-jshint" );
 
 grunt.initConfig({
 	jshint: {
-		files: [ "Gruntfile.js", "tasks/**/*.js" ],
+		files: [ "*.js", "tasks/**/*.js" ],
 		options: {
 			jshintrc: ".jshintrc"
 		}
@@ -12,6 +12,5 @@ grunt.initConfig({
 });
 
 grunt.registerTask( "default", "jshint" );
-grunt.loadTasks("tasks");
 
 };
