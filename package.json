@@ -21,7 +21,6 @@
       "url": "https://github.com/scottgonzalez/grunt-git-authors/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "Gruntfile.js",
   "engines": {
     "node": "*"
   },
