@@ -1,41 +1,6 @@
-var child_process = require( "child_process" );
+var spawn = require( "spawnback" );
 
 exports = module.exports = getAuthors;
-
-function spawn( command, args, callback ) {
-	var stdout = "";
-	var stderr = "";
-	var child = child_process.spawn( command, args );
-	var hadError = false;
-
-	child.on( "error", function( error ) {
-		hadError = true;
-		callback( error );
-	});
-
-	child.stdout.on( "data", function( data ) {
-		stdout += data;
-	});
-
-	child.stderr.on( "data", function( data ) {
-		stderr += data;
-	});
-
-	child.on( "close", function( code ) {
-		if ( hadError ) {
-			return;
-		}
-
-		var error;
-		if ( code ) {
-			error = new Error( stderr );
-			error.code = code;
-			return callback( error );
-		}
-
-		callback( null, stdout.trimRight() );
-	});
-}
 
 function getAuthors( options, callback ) {
 	spawn( "git",
@@ -46,7 +11,7 @@ function getAuthors( options, callback ) {
 		}
 
 		var tracked = {};
-		var authors = result.split( "\n" )
+		var authors = result.trimRight().split( "\n" )
 			.concat( (options.priorAuthors || []).reverse() )
 			.reverse()
 			.filter(function( author ) {
