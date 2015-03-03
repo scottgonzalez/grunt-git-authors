@@ -28,12 +28,26 @@ You can optionally run this task against a subdirectory:
 grunt authors:path/to/directory
 ```
 
+#### update-authors
+
+Creates or updates the file `AUTHORS.txt` with the list of authors in order
+of first contribution.
+
+You can optionally run this task against a subdirectory (the `AUTHORS.txt`
+file will be placed inside that directory):
+
+```sh
+grunt update-authors:path/to/directory
+```
+
 ### Config
 
 #### authors.prior
 
 Define a list of authors that contributed prior to the first commit in the repo.
 This is useful if you've moved from another version control system.
+
+*NOTE: This config value is used for the `update-authors` task as well.*
 
 ```js
 grunt.initConfig({
@@ -49,12 +63,28 @@ grunt.initConfig({
 ## Node API
 
 This module can also be used directly via `require( "grunt-git-authors" )`.
-The module exports a single function which accepts an options hash and a callback.
 
-### Options
+### getAuthors( options, callback )
 
-* `dir` (String): Which directory to inspect for authors (defaults to `"."`).
-* `priorAuthors` (Array): An array of authors that contributed prior to the first commit in the repo.
+Gets the list of authors in order of first contribution.
+
+* `options` (Object)
+  * `dir` (String): Which directory to inspect for authors (defaults to `"."`).
+  * `priorAuthors` (Array): An array of authors that contributed prior to the first commit in the repo.
+* `callback` (`function( error, authors )`): A callback to invoke with the list of authors.
+  * `authors`: An array of authors in the form of `Name <email>`.
+
+### updateAuthors( options, callback )
+
+Creates or updates an authors file with all authors in order of first contribution.
+
+* `options` (Object)
+  * `dir` (String): Which directory to inspect for authors (defaults to `"."`).
+  * `priorAuthors` (Array): An array of authors that contributed prior to the first commit in the repo.
+  * `filename` (String): Which file to create (defaults to `"AUTHORS.txt"`).
+  * `banner` (String): Text to place at the top of the file (defaults to `"Authors ordered by first contribution"`).
+* `callback (`function( error, filename )`): A callback to invoke after writing the file.
+  * `filename`: The path of the file that was written.
 
 ## Mailmap
 
