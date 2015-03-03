@@ -96,7 +96,7 @@ up information. For more information, about using a mailmap, see the docs for
 
 ## License
 
-Copyright 2014 Scott González. Released under the terms of the MIT license.
+Copyright Scott González. Released under the terms of the MIT license.
 
 ---
 
