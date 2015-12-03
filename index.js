@@ -2,7 +2,7 @@ var fs = require( "fs" );
 var path = require( "path" );
 var spawn = require( "spawnback" );
 
-function unique(count) {
+function unique( count ) {
 	count = count || {};
 	return function( i ) {
 		count[ i ] = count[ i ] ? count[ i ] + 1 : 1;
@@ -19,16 +19,16 @@ var orderBy = {
 	count: function( authors ) {
 		var count = {};
 		return authors
-			.filter(unique(count))
-			.sort(function(a, b) {
-				return count[b] - count[a];
+			.filter( unique( count ) )
+			.sort(function( a, b ) {
+				return count[ b ] - count[ a ];
 			});
 	},
 
 	date: function( authors ) {
 		return authors
 			.reverse()
-			.filter(unique());
+			.filter( unique() );
 	}
 };
 
@@ -63,7 +63,7 @@ function updateAuthors( options, callback ) {
 
 		options.order = orderBy[ options.order ] ? options.order : "date";
 
-		var banner = options.banner || banners[options.order];
+		var banner = options.banner || banners[ options.order ];
 		var dir = options.dir || ".";
 		var filename = path.join( dir, options.filename || "AUTHORS.txt" );
 
