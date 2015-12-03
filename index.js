@@ -2,15 +2,33 @@ var fs = require( "fs" );
 var path = require( "path" );
 var spawn = require( "spawnback" );
 
+function unique(count) {
+	count = count || {};
+	return function( i ) {
+		count[ i ] = count[ i ] ? count[ i ] + 1 : 1;
+		return count[ i ] === 1;
+	};
+}
+
+var banners = {
+	count: "Authors ordered by number of contributions",
+	date: "Authors ordered by first contribution"
+};
+
 var orderBy = {
-	date: function(authors) {
+	count: function( authors ) {
+		var count = {};
+		return authors
+			.filter(unique(count))
+			.sort(function(a, b) {
+				return count[b] - count[a];
+			});
+	},
+
+	date: function( authors ) {
 		return authors
 			.reverse()
-			.filter(function( author ) {
-				var first = !tracked[ author ];
-				tracked[ author ] = true;
-				return first;
-			});
+			.filter(unique());
 	}
 };
 
@@ -26,12 +44,12 @@ function getAuthors( options, callback ) {
 		}
 
 		var tracked = {};
-		options.order = orderBy[order] ? order : "date";
+		options.order = orderBy[ options.order ] ? options.order : "date";
 
 		var authors = result.trimRight().split( "\n" )
 			.concat( (options.priorAuthors || []).reverse() );
 
-		authors = orderBy[options.order](authors);
+		authors = orderBy[ options.order ]( authors );
 
 		callback( null, authors );
 	});
@@ -43,7 +61,9 @@ function updateAuthors( options, callback ) {
 			return callback( error );
 		}
 
-		var banner = options.banner || "Authors ordered by first contribution";
+		options.order = orderBy[ options.order ] ? options.order : "date";
+
+		var banner = options.banner || banners[options.order];
 		var dir = options.dir || ".";
 		var filename = path.join( dir, options.filename || "AUTHORS.txt" );
 
