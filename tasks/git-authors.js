@@ -9,6 +9,7 @@ function( dir ) {
 
 	gitAuthors.getAuthors({
 		dir: dir || ".",
+		order: grunt.config( "authors.order" ),
 		priorAuthors: grunt.config( "authors.prior" )
 	}, function( error, authors ) {
 		if ( error ) {
@@ -28,6 +29,7 @@ function( dir ) {
 
 	gitAuthors.updateAuthors({
 		dir: dir || ".",
+		order: grunt.config( "authors.order" ),
 		priorAuthors: grunt.config( "authors.prior" )
 	}, function( error, filename ) {
 		if ( error ) {

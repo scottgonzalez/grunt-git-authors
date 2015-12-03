@@ -42,6 +42,22 @@ grunt update-authors:path/to/directory
 
 ### Config
 
+#### authors.order
+
+Define the order of the list of authors. The default ordering is by first
+contribution `{order: "date"}`. An alternative ordering is by number of
+contributions `{order: "count"}`.
+
+*NOTE: This config value is used for the `update-authors` task as well.*
+
+```js
+grunt.initConfig({
+	authors: {
+		order: "count"
+	}
+});
+```
+
 #### authors.prior
 
 Define a list of authors that contributed prior to the first commit in the repo.
