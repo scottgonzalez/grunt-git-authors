@@ -2,6 +2,18 @@ var fs = require( "fs" );
 var path = require( "path" );
 var spawn = require( "spawnback" );
 
+var orderBy = {
+	date: function(authors) {
+		return authors
+			.reverse()
+			.filter(function( author ) {
+				var first = !tracked[ author ];
+				tracked[ author ] = true;
+				return first;
+			});
+	}
+};
+
 exports.getAuthors = getAuthors;
 exports.updateAuthors = updateAuthors;
 
@@ -14,14 +26,12 @@ function getAuthors( options, callback ) {
 		}
 
 		var tracked = {};
+		options.order = orderBy[order] ? order : "date";
+
 		var authors = result.trimRight().split( "\n" )
-			.concat( (options.priorAuthors || []).reverse() )
-			.reverse()
-			.filter(function( author ) {
-				var first = !tracked[ author ];
-				tracked[ author ] = true;
-				return first;
-			});
+			.concat( (options.priorAuthors || []).reverse() );
+
+		authors = orderBy[options.order](authors);
 
 		callback( null, authors );
 	});
