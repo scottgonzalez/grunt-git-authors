@@ -51,9 +51,6 @@ function getOptions( options ) {
 	if ( !orderBy.hasOwnProperty( options.order ) ) {
 		options.order = "date";
 	}
-	if ( !orderBy[ options.order ] ) {
-		throw new Error( "Invalid `order` value `" + options.order + "`" );
-	}
 }
 
 function unique( count ) {
