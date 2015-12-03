@@ -2,14 +2,6 @@ var fs = require( "fs" );
 var path = require( "path" );
 var spawn = require( "spawnback" );
 
-function unique( count ) {
-	count = count || {};
-	return function( i ) {
-		count[ i ] = count[ i ] ? count[ i ] + 1 : 1;
-		return count[ i ] === 1;
-	};
-}
-
 var banners = {
 	count: "Authors ordered by number of contributions",
 	date: "Authors ordered by first contribution"
@@ -44,7 +36,7 @@ function getAuthors( options, callback ) {
 		}
 
 		var tracked = {};
-		options.order = orderBy[ options.order ] ? options.order : "date";
+		options = getOptions( options );
 
 		var authors = result.trimRight().split( "\n" )
 			.concat( (options.priorAuthors || []).reverse() );
@@ -55,13 +47,33 @@ function getAuthors( options, callback ) {
 	});
 }
 
+function getOptions( options ) {
+	if ( !orderBy.hasOwnProperty( options.order ) ) {
+		options.order = "date";
+	}
+	if ( !orderBy[ options.order ] ) {
+		throw new Error( "Invalid `order` value `" + options.order + "`" );
+	}
+}
+
+function unique( count ) {
+	count = count || {};
+	return function( key ) {
+		if ( !(key in count) ) {
+			count[ i ] = 0;
+		}
+		count[ i ]++;
+		return count[ key ] === 1;
+	};
+}
+
 function updateAuthors( options, callback ) {
 	getAuthors( options, function( error, authors ) {
 		if ( error ) {
 			return callback( error );
 		}
 
-		options.order = orderBy[ options.order ] ? options.order : "date";
+		options = getOptions( options );
 
 		var banner = options.banner || banners[ options.order ];
 		var dir = options.dir || ".";
