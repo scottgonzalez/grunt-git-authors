@@ -44,7 +44,7 @@ grunt update-authors:path/to/directory
 
 #### authors.order
 
-Define the list order of the authors. The default ordering is by first
+Define the order of the list of authors. The default ordering is by first
 contribution `{order: "date"}`. An alternative ordering is by number of
 contributions `{order: "count"}`.
 
