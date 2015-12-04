@@ -51,6 +51,7 @@ function getOptions( options ) {
 	if ( !orderBy.hasOwnProperty( options.order ) ) {
 		options.order = "date";
 	}
+	return options;
 }
 
 function unique( count ) {
