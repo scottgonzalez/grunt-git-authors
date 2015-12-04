@@ -35,7 +35,6 @@ function getAuthors( options, callback ) {
 			return callback( error );
 		}
 
-		var tracked = {};
 		options = getOptions( options );
 
 		var authors = result.trimRight().split( "\n" )
