@@ -58,9 +58,9 @@ function unique( count ) {
 	count = count || {};
 	return function( key ) {
 		if ( !(key in count) ) {
-			count[ i ] = 0;
+			count[ key ] = 0;
 		}
-		count[ i ]++;
+		count[ key ]++;
 		return count[ key ] === 1;
 	};
 }
