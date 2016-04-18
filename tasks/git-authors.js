@@ -42,4 +42,24 @@ function( dir ) {
 	});
 });
 
+grunt.registerTask( "update-contributors",
+	"Updates the contributors list in package.json",
+function( dir ) {
+	var done = this.async();
+
+	gitAuthors.updatePackageJson({
+		dir: dir || ".",
+		order: grunt.config( "authors.order" ),
+		priorAuthors: grunt.config( "authors.prior" )
+	}, function( error ) {
+		if ( error ) {
+			grunt.log.error( error );
+			return done( false );
+		}
+
+		grunt.log.writeln( "Updated package.json." );
+		done();
+	});
+});
+
 };

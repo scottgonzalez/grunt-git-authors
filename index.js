@@ -2,6 +2,10 @@ var fs = require( "fs" );
 var path = require( "path" );
 var spawn = require( "spawnback" );
 
+exports.getAuthors = getAuthors;
+exports.updateAuthors = updateAuthors;
+exports.updatePackageJson = updatePackageJson;
+
 var banners = {
 	count: "Authors ordered by number of contributions",
 	date: "Authors ordered by first contribution"
@@ -23,9 +27,6 @@ var orderBy = {
 			.filter( unique() );
 	}
 };
-
-exports.getAuthors = getAuthors;
-exports.updateAuthors = updateAuthors;
 
 function getAuthors( options, callback ) {
 	spawn( "git",
@@ -84,6 +85,38 @@ function updateAuthors( options, callback ) {
 			}
 
 			callback( null, filename );
+		});
+	});
+}
+
+function updatePackageJson( options, callback ) {
+	getAuthors( options, function( error, authors) {
+		if ( error ) {
+			return callback( error );
+		}
+
+		options = getOptions( options );
+
+		var dir = options.dir || ".";
+		var filename = path.join( dir, "package.json" );
+
+		fs.readFile( filename, { encoding: "utf8" }, function( error, content ) {
+			if ( error ) {
+				return callback( error );
+			}
+
+			var indentation = content.match( /\n([\t\s]+)/ )[ 1 ];
+			var package = JSON.parse( content );
+			package.contributors = authors;
+			content = JSON.stringify( package, null, indentation ) + "\n";
+
+			fs.writeFile( filename, content, function( error ) {
+				if ( error ) {
+					return callback( error );
+				}
+
+				callback( null );
+			});
 		});
 	});
 }

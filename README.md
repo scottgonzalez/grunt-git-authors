@@ -30,14 +30,24 @@ grunt authors:path/to/directory
 
 #### update-authors
 
-Creates or updates the file `AUTHORS.txt` with the list of authors in order
-of first contribution.
+Creates or updates the file `AUTHORS.txt` with the list of authors.
 
 You can optionally run this task against a subdirectory (the `AUTHORS.txt`
 file will be placed inside that directory):
 
 ```sh
 grunt update-authors:path/to/directory
+```
+
+#### update-contributors
+
+Updates `package.json` with the list of authors.
+
+You can optionally run this task against a subdirectory (the `package.json`
+file inside that directory will be used):
+
+```sh
+grunt update-contributors:path/to/directory
 ```
 
 ### Config
@@ -82,25 +92,37 @@ This module can also be used directly via `require( "grunt-git-authors" )`.
 
 ### getAuthors( options, callback )
 
-Gets the list of authors in order of first contribution.
+Gets the list of authors.
 
 * `options` (Object)
   * `dir` (String): Which directory to inspect for authors (defaults to `"."`).
   * `priorAuthors` (Array): An array of authors that contributed prior to the first commit in the repo.
+  * `order` (String): Which criteria to use for ordering the authors. `"date"` will order by first contribution; `"count"` will order by number of contributions. Defaults to `"date"`.
 * `callback` (`function( error, authors )`): A callback to invoke with the list of authors.
   * `authors`: An array of authors in the form of `Name <email>`.
 
 ### updateAuthors( options, callback )
 
-Creates or updates an authors file with all authors in order of first contribution.
+Creates or updates an authors file with all authors.
 
 * `options` (Object)
   * `dir` (String): Which directory to inspect for authors (defaults to `"."`).
   * `priorAuthors` (Array): An array of authors that contributed prior to the first commit in the repo.
+  * `order` (String): Which criteria to use for ordering the authors. `"date"` will order by first contribution; `"count"` will order by number of contributions. Defaults to `"date"`.
   * `filename` (String): Which file to create (defaults to `"AUTHORS.txt"`).
   * `banner` (String): Text to place at the top of the file (defaults to `"Authors ordered by first contribution"`).
 * `callback (`function( error, filename )`): A callback to invoke after writing the file.
   * `filename`: The path of the file that was written.
+
+### updatePackageJson( options, callback )
+
+Updates `package.json` with all authors.
+
+* `options` (Object)
+  * `dir` (String): Which directory to inspect for authors (defaults to `"."`).
+  * `priorAuthors` (Array): An array of authors that contributed prior to the first commit in the repo.
+  * `order` (String): Which criteria to use for ordering the authors. `"date"` will order by first contribution; `"count"` will order by number of contributions. Defaults to `"date"`.
+* `callback (`function( error )`): A callback to invoke after writing the file.
 
 ## Mailmap
 
